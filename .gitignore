@@ -105,4 +105,4 @@ dist
 
 # Script outputs
 zs_get_testruns.js
-output_attachments/*
+output_attachments/
