@@ -1,6 +1,4 @@
 #!/usr/bin/env node
-// const { fs, https, authToken, promisify } = require('../main');
-
 const fs = require('fs');
 const https = require('https');
 const { promisify } = require('util');
@@ -9,18 +7,9 @@ const { promisify } = require('util');
 // and loop into each test result to extract attachments details
 // then it generates a Json file in a given directory, like this: input_attachments/attachments-mapping-testrunkey-${testRunKey}.json
 
-// const auth = 'houda:hiptest';
-
 const auth = process.env.AUTH;
-
 const authToken = Buffer.from(auth).toString('base64');
-
-// const baseUrl = 'https://localhost:8080/rest/atm/1.0'; // replace this with your Jira URL
-
-// const baseUrl = 'https://6abf07451cba.ngrok.app/rest/atm/1.0';
-
 const baseUrl = process.env.BASE_URL + '/rest/atm/1.0';
-
 const testRunKey = process.env.TEST_RUN_KEY;
 
 function createInputAttachmentsFolder() {
@@ -77,7 +66,6 @@ const getTestResults = async (testRunKey) => {
     throw err;
   }
 };
-
 
 const getTestResultAttachments = async (testResultId) => {
   const url = `${baseUrl}/testresult/${testResultId}/attachments`;
