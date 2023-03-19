@@ -102,3 +102,7 @@ dist
 
 # TernJS port file
 .tern-port
+
+# Script outputs
+zs_get_testruns.js
+output_attachments/*
