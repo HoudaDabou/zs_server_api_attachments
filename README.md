@@ -21,7 +21,7 @@ Run the script with:
 ```
 AUTH=username:password BASE_URL=https://localhost PROJECT_KEY=project_key SUBFOLDER_NAME='the name of the subfolder' node zs_get_testruns.js
 ```
-Please note that the value of ```BASE_URL``` should be set with https://
+Please note that the value of ```BASE_URL``` should be set without ```https://```
 
 
 ### Get all attachments associated with test results of a given test run key
@@ -32,7 +32,7 @@ Run the script with:
 ```
 AUTH=username:password BASE_URL=localhost PROJECT_KEY=project_key TEST_RUN_KEY=your_test_run_key node zs_attachments_test_results.js
 ```
-Please note that the value of ```BASE_URL``` should be set without https://
+Please note that the value of ```BASE_URL``` should be set with ```https://```
 
 
 ### Delete all attachments associated with those test results
@@ -45,4 +45,4 @@ Run the script with:
 AUTH=username:password BASE_URL=localhost node zs_attachments_test_results.js
 ```
 
-Please note that the value of ```BASE_URL``` should be set without https://
+Please note that the value of ```BASE_URL``` should be set without ```https://```
