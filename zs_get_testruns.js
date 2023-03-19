@@ -12,7 +12,7 @@ const authToken = Buffer.from(auth).toString('base64');
 const baseUrl = process.env.BASE_URL;
 
 // const search = `projectKey = "${process.env.PROJECT_KEY}" AND folder = ${process.env.SUBFOLDER_NAME}`;
-const search = `projectKey = "AUT" AND folder = "/${process.env.SUBFOLDER_NAME}"`;
+const search = `projectKey = "${process.env.PROJECT_KEY}" AND folder = "/${process.env.SUBFOLDER_NAME}"`;
 
 
 
