@@ -19,7 +19,7 @@ This uses ```GET /testrun/search``` REST API endpoint: https://support.smartbear
 Run the script with:
 
 ```
-AUTH=username:password BASE_URL=https://localhost PROJECT_KEY=project_key SUBFOLDER_NAME='the name of the subfolder' node zs_get_testruns.js
+AUTH=username:password BASE_URL=localhost PROJECT_KEY=project_key SUBFOLDER_NAME='the name of the subfolder' node zs_get_testruns.js
 ```
 Please note that the value of ```BASE_URL``` should be set without ```https://```
 
@@ -30,7 +30,7 @@ This uses ```GET /testresult/{testResultId}/attachments``` REST API endpoint: ht
 Run the script with:
 
 ```
-AUTH=username:password BASE_URL=localhost PROJECT_KEY=project_key TEST_RUN_KEY=your_test_run_key node zs_attachments_test_results.js
+AUTH=username:password BASE_URL=https://localhost PROJECT_KEY=project_key TEST_RUN_KEY=your_test_run_key node zs_attachments_test_results.js
 ```
 Please note that the value of ```BASE_URL``` should be set with ```https://```
 
@@ -42,7 +42,7 @@ This uses ```DELETE /attachments/{id}``` REST API endpoint: https://support.smar
 Run the script with:
 
 ```
-AUTH=username:password BASE_URL=localhost node zs_attachments_test_results.js
+AUTH=username:password BASE_URL=localhost node zs_delete_attachments.js
 ```
 
 Please note that the value of ```BASE_URL``` should be set without ```https://```
