@@ -12,8 +12,26 @@ Install node dependencies:
 npm install
 ```
 
-Delete all attachments associated with test results of a given test run key. The following script catches the attachments linked to each test result in the test run, it returns a Json ouptput, which is reused to identify the attachments to delete while the second process. 
+Get all test runs from a given subfolder with GET /testrun/search REST API endpoint: https://support.smartbear.com/zephyr-scale-server/api-docs/v1/
+
+Run the script with:
 
 ```
-node main.js
+AUTH=username:password BASE_URL=https://localhost PROJECT_KEY=project_key SUBFOLDER_NAME='the name of the subfolder' node zs_get_testruns.js
 ```
+Please note that the value of BASE_URL should be set with https://
+
+
+Get all attachments associated with test results of a given test run key, run:
+
+```
+AUTH=username:password BASE_URL=localhost PROJECT_KEY=project_key TEST_RUN_KEY=your_test_run_key node zs_attachments_test_results.js
+```
+Please note that the value of BASE_URL should be set without https://
+
+Delete all attachments associated with test results of a given test run key, run:
+
+```
+AUTH=username:password BASE_URL=localhost node zs_attachments_test_results.js
+```
+Please note that the value of BASE_URL should be set without https://
