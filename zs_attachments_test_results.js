@@ -1,17 +1,30 @@
 #!/usr/bin/env node
-const { fs, https, promisify, authToken } = require('./main');
+// const { fs, https, authToken, promisify } = require('../main');
+
+const fs = require('fs');
+const https = require('https');
+const { promisify } = require('util');
 
 // this script fetches all test results of a given test run
 // and loop into each test result to extract attachments details
 // then it generates a Json file in a given directory, like this: input_attachments/attachments-mapping-testrunkey-${testRunKey}.json
 
-const baseUrl = 'https://localhost:8080//rest/atm/1.0'; // replace this with your Jira URL
+// const auth = 'houda:hiptest';
 
-// Set test run key
-const testRunKey = 'your_test_run_key';
+const auth = process.env.AUTH;
+
+const authToken = Buffer.from(auth).toString('base64');
+
+// const baseUrl = 'https://localhost:8080/rest/atm/1.0'; // replace this with your Jira URL
+
+// const baseUrl = 'https://6abf07451cba.ngrok.app/rest/atm/1.0';
+
+const baseUrl = process.env.BASE_URL + '/rest/atm/1.0';
+
+const testRunKey = process.env.TEST_RUN_KEY;
 
 function createInputAttachmentsFolder() {
-  const folderName = 'input_attachments';
+  const folderName = 'output_attachments';
 
   if (!fs.existsSync(folderName)) {
     fs.mkdirSync(folderName);
@@ -116,7 +129,7 @@ const attachmentMapping = [];
         console.error(`Error fetching attachments for test result ${testResult.id}. ${err.message}`);
       }
     }));
-    const fileName = `input_attachments/attachments-mapping-testrunkey-${testRunKey}.json`;
+    const fileName = `output_attachments/attachments-mapping-testrunkey-${testRunKey}.json`;
     await promisify(fs.writeFile)(fileName, JSON.stringify(attachmentMapping, null, 2));
     console.log(`Attachment mapping written to file "${fileName}"`);
   } catch (err) {

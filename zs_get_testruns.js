@@ -7,14 +7,20 @@ const https = require('https');
 // it generates the zephyr_scale_testRuns.json as an output
 // that includes test run keys and names
 
-const auth = 'username:password'; // replace this with your API user credentials
+const auth = process.env.AUTH;
 const authToken = Buffer.from(auth).toString('base64');
+const baseUrl = process.env.BASE_URL;
 
-const search = 'projectKey = "AUT" AND folder = "/my first subfolder"'; // add your project token and subfolder name 
+// const search = `projectKey = "${process.env.PROJECT_KEY}" AND folder = ${process.env.SUBFOLDER_NAME}`;
+const search = `projectKey = "AUT" AND folder = "/${process.env.SUBFOLDER_NAME}"`;
+
+
+
+// const search = 'projectKey = "AUT" AND folder = "/my first subfolder"'; // add your project token and subfolder name 
 const query = `query=${encodeURIComponent(search)}`;
 
 const options = {
-  hostname: 'localhost:8080', // replace this with your Jira URL without https
+  hostname: `${baseUrl}`, // replace this with your Jira URL without https
   path: `/rest/atm/1.0/testrun/search?${query}`,
   method: 'GET',
   headers: {

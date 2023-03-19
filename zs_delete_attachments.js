@@ -1,15 +1,20 @@
 #!/usr/bin/env node
-const { fs, https, path, authToken } = require('./main');
+const fs = require('fs');
+const https = require('https');
+const path = require('path');
 
 // this script gets all *.json files in output_attachments folder
 // it extracts the Attachment IDs from those *.json files 
 // and deletes each attachment based on its ID
 
+const auth = process.env.AUTH;
+const authToken = Buffer.from(auth).toString('base64');
+const baseUrl = process.env.BASE_URL;
 const outputFolder = path.join(__dirname, 'output_attachments');
 
 function deleteAttachment(attachmentId) {
   const options = {
-    hostname: 'localhost:8080', // replace this with your Jira URL without https
+    hostname: `${baseUrl}`, // replace this with your Jira URL without https
     path: `/rest/atm/1.0/attachments/${attachmentId}`,
     method: 'DELETE',
     headers: {
@@ -19,7 +24,7 @@ function deleteAttachment(attachmentId) {
   };
   
   return new Promise((resolve, reject) => {
-    const req = https.request(options, (res) => {output_attachments
+    const req = https.request(options, (res) => { outputFolder
       if (res.statusCode === 204) {
         console.log(`Attachment with ID ${attachmentId} was deleted successfully.`);
         resolve();
