@@ -2,10 +2,10 @@
 This repository contains some node scripts that helps to delete all attachments associated with test results in a given test run, using the REST API: https://support.smartbear.com/zephyr-scale-server/api-docs/v1/
 
 
-# Requirements
+## Requirements
 NodeJs 14.x
 
-# How to use
+## How to use
 
 ### Install node dependencies with:
 
